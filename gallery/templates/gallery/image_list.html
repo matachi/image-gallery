@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Gallery <small>Here you can browse pictures other people have uploaded</small></h2>
+</div>
+{% for object in object_list %}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="thumbnail">
+        <img src="{% static object.image.url %}" />
+        <div class="caption">
+          <h3>{{ object.title }}</h3>
+          <p>{{ object.caption }}</p>
+          <p>{{ object.pub_date|date:'jS F Y' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}
