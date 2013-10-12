@@ -8,6 +8,9 @@
     body > .container {
       margin-top: 60px;
     }
+    .messages {
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
@@ -26,14 +29,23 @@
         <ul class="nav navbar-nav">
           <li><a href="#">Home</a></li>
           <li><a href="{% url 'gallery:list' %}">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
   </div>
 
+
   <div class="container">
-      {% block content %}{% endblock %}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% block content %}{% endblock %}
   </div>
 
   <script src="//code.jquery.com/jquery.js"></script>

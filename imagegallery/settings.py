@@ -108,7 +108,9 @@ ROOT_URLCONF = 'imagegallery.urls'
 WSGI_APPLICATION = 'imagegallery.wsgi.application'
 
 import os
-TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),)
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -123,6 +125,7 @@ INSTALLED_APPS = (
 
     'south',
 
+    'imagegallery',
     'gallery',
 )
 
@@ -156,3 +159,5 @@ LOGGING = {
         },
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
