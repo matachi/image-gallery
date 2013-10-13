@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head_extra %}
+<style>
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.vert-text {
+  color: #fff;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  text-shadow: black 0 0 1em, black 0 0 0.1em;
+}
+
+.vert-text h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 4.5em;
+  font-weight: 700;
+}
+
+/* Full Page Image Header Area */
+
+.header {
+  display: table;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background: url({% static 'imagegallery/img/day229.jpg' %}) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* Intro */
+
+.intro {
+  padding: 50px 0;
+}
+
+/* Callout */
+
+.callout {
+  color: #ffffff;
+  display: table;
+  height: 400px;
+  width: 100%;
+  background: url({% static 'imagegallery/img/day268.jpg' %}) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* Map */
+
+#map {
+  height: 500px;
+}
+
+/* Footer */
+
+footer {
+  padding: 100px 0;
+}
+
+.top-scroll {
+  margin-top: 50px;
+}
+
+footer i {
+  color: #333333;
+}
+
+footer i:hover {
+  color: #0a5175;
+  text-decoration: none;
+}
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .header {
+    background: url({% static 'imagegallery/img/day229.jpg' %}) no-repeat center center scroll;
+  }
+
+  .callout {
+    background: url({% static 'imagegallery/img/day268.jpg' %}) no-repeat center center scroll;
+  }
+
+  #map {
+    height: 75%;
+  }
+
+}
+</style>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<!-- Full Page Image Header Area -->
+<div id="top" class="header">
+  <div class="vert-text">
+    <h1>Beautiful photos</h1>
+    <h3><em>We</em> code galleries, <em>You</em> fill them</h3>
+    <a href="#about" class="btn btn-primary btn-lg">Find Out More</a>
+  </div>
+</div>
+<!-- /Full Page Image Header Area -->
+
+<!-- Intro -->
+<div id="about" class="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <h2>Image Gallery is the perfect image platform for your next project!</h2>
+        <p class="lead">Make a photo gallery with your family photos. Let your blog readers submit header suggestions. Or just show of your most hilarious cat pictures! Please check out how it could look like <a href="{% url 'gallery:list' %}">here</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Intro -->
+
+<!-- Callout -->
+<div class="callout">
+  <div class="vert-text">
+    <h1>From all around the world</h1>
+  </div>
+</div>
+<!-- /Callout -->
+
+<!-- Map -->
+<div id="map"></div>
+<!-- /Map -->
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <ul class="list-inline">
+          <li><a href="http://matachi.se"><i class="icon-user icon-3x"></i></a></li>
+          <li><a href="https://twitter.com/DanielJonss"><i class="icon-twitter icon-3x"></i></a></li>
+          <li><a href="https://github.com/MaTachi"><i class="icon-github icon-3x"></i></a></li>
+        </ul>
+        <div class="top-scroll">
+          <a href="#top"><i class="icon-circle-arrow-up scroll icon-4x"></i></a>
+        </div>
+        <hr>
+        <p>Copyright &copy; Image Gallery 2013</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- /Footer -->
+{% endblock %}
+
+{% block script_extra %}
+<script>
+  var map = L.map('map').setView([57.708, 11.972], 17);
+  L.tileLayer('http://{s}.tile.cloudmade.com/e8dea5784fb1441b8d0885546a0d495a/997/256/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+    maxZoom: 18
+  }).addTo(map);
+  var marker = L.marker([51.5, -0.09]).addTo(map);
+</script>
+<script>
+  $(function() {
+    $('a[href*=#]:not([href=#])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+          || location.hostname == this.hostname) {
+
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html,body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+          return false;
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

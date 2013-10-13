@@ -1,7 +1,11 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 from imagegallery.forms import ContactForm
+
+
+class HomeView(TemplateView):
+    template_name = 'home.html'
 
 
 class ContactView(FormView):
