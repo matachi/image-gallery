@@ -7,7 +7,7 @@ Author: Daniel 'MaTachi' Jonsson
 License: [MIT License](LICENSE)
 
 Attributions
-============
+------------
 
 The two pictures on the Home page are taken by [Marius
 Vieth](http://www.flickr.com/photos/badabiing/) and are licensed under [CC
