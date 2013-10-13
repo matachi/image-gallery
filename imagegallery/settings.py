@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     'south',
+    'widget_tweaks',
 
     'imagegallery',
     'gallery',

@@ -5,49 +5,6 @@
   <h2>Contact <small>Send a message to the site owner</small></h2>
 </div>
 
-<form action="{% url 'contact' %}" method="post" class="form-horizontal" role="form">
-  {% csrf_token %}
-  {{ form.non_field_errors }}
-  <div class="form-group">
-    <label for="id_name" class="col-sm-2 control-label">Name</label>
-    <div class="col-sm-5">
-      <input id="id_name" name="name" type="text" class="form-control" placeholder="Your name" />
-    </div>
-    <div class="col-sm-5">
-      {{ form.name.errors }}
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="id_email" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-5">
-      <input id="id_email" name="email" type="text" class="form-control" placeholder="Your email address" />
-    </div>
-    <div class="col-sm-5">
-      {{ form.email.errors }}
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="id_subject" class="col-sm-2 control-label">Subject</label>
-    <div class="col-sm-5">
-      <input id="id_subject" name="subject" type="text" class="form-control" placeholder="The subject of the message" />
-    </div>
-    <div class="col-sm-5">
-      {{ form.subject.errors }}
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="id_message" class="col-sm-2 control-label">Message</label>
-    <div class="col-sm-5">
-      <textarea id="id_message" name="message" class="form-control" cols="40" rows="10" placeholder="Type something nice"></textarea>
-    </div>
-    <div class="col-sm-5">
-      {{ form.message.errors }}
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-5 col-sm-offset-2">
-      <input type="submit" value="Submit" class="btn btn-primary" />
-    </div>
-  </div>
-</form>
+{% url 'contact' as url %}
+{% include 'bootstrap_form.html' with url=url %}
 {% endblock %}

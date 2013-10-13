@@ -4,10 +4,14 @@ from django.core.mail import send_mail
 
 
 class ContactForm(forms.Form):
-    name = forms.CharField()
-    email = forms.EmailField()
-    subject = forms.CharField()
-    message = forms.CharField(widget=forms.Textarea)
+    name = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Your name'}))
+    email = forms.EmailField(
+        widget=forms.TextInput(attrs={'placeholder': 'Your email address'}))
+    subject = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'The subject of the message'}))
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={'placeholder': 'Type something nice'}))
 
     def send_email(self):
         name = self.cleaned_data.get('name')
