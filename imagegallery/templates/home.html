@@ -88,6 +88,10 @@ footer i:hover {
 
   .header {
     background: url({% static 'imagegallery/img/day229.jpg' %}) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 
   .callout {
@@ -165,12 +169,13 @@ footer i:hover {
 
 {% block script_extra %}
 <script>
-  var map = L.map('map').setView([57.708, 11.972], 17);
-  L.tileLayer('http://{s}.tile.cloudmade.com/e8dea5784fb1441b8d0885546a0d495a/997/256/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+  var map = L.map('map').setView([57.709, 11.972], 17);
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
     maxZoom: 18
   }).addTo(map);
-  var marker = L.marker([51.5, -0.09]).addTo(map);
+  var marker = L.marker([57.7093, 11.9735]).addTo(map);
+  marker.bindPopup("<b>The train station!</b><br>The perfect location for<br>taking train pictures...").openPopup();
 </script>
 <script>
   $(function() {
