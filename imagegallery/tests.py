@@ -27,6 +27,9 @@ class ContactFormTest(TestCase):
         self.form.is_valid()
         self.form.send_email()
 
+        self.assertEqual(1, len(mail.outbox),
+                         'Only 1 email should have been sent')
+
         email = mail.outbox[0]
 
         self.assertEqual(self.data['subject'], email.subject)
