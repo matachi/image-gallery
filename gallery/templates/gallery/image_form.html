@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Upload an image <small>C'mon and upload one of your beautiful pictures to the gallery!</small></h2>
+</div>
+
+{% include 'misc/bootstrap_form.html' with url=url submit='Upload' %}
+{% endblock %}

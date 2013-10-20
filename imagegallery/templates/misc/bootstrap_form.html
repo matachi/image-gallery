@@ -1,6 +1,7 @@
 {% load widget_tweaks %}
+{% load class_name %}
 
-<form action="{{ url }}" method="post" class="form-horizontal" role="form">
+<form action="{{ url }}" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
   {% csrf_token %}
   {{ form.non_field_errors }}
 
@@ -14,7 +15,11 @@
   <div class="form-group">
     <label for="{{ field.auto_id }}" class="col-sm-2 control-label">{{ field.label }}</label>
     <div class="col-sm-5">
+    {% if field.field|class_name == 'ImageField' %}
+      {{ field }}
+    {% else %}
       {{ field|add_class:'form-control' }}
+    {% endif %}
     </div>
     <div class="col-sm-5">
       {{ field.errors }}
